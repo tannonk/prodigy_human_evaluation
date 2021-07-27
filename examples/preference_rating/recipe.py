@@ -64,29 +64,30 @@ def choice(dataset: str, source: str):
 
     def add_options(stream, k=2):
         """Helper function to add options to every task in a stream."""
-        for task in stream:
+        while True:
+            for task in stream:
 
-            new_task = {
-                'src_text': '',
-                'id': '',
-                'ref_text': '',
-                'hyp_a_text': '',
-                'hyp_a_id': '',
-                'hyp_b_text': '',
-                'hyp_b_id': '',
-                'score': 0,
-            }
-            
-            new_task['src_text'] = task.pop('src_texts')
-            new_task['src_text_title'], new_task['src_text_body'] = clean_text_for_display(new_task['src_text'])
-            new_task['id'] = task.pop('test_set_line_id')
-            new_task['ref_text'] = task.pop('ref_texts') # remove from item to avoid considering for annotation       
-            random_pair = random.sample(list(task.keys()), k=min(k, len(list(task.keys()))))
-            new_task['hyp_a_id'], new_task['hyp_b_id'] = random_pair
-            new_task['hyp_a_text'] = task[new_task['hyp_a_id']]
-            new_task['hyp_b_text'] = task[new_task['hyp_b_id']]
+                new_task = {
+                    'src_text': '',
+                    'id': '',
+                    'ref_text': '',
+                    'hyp_a_text': '',
+                    'hyp_a_id': '',
+                    'hyp_b_text': '',
+                    'hyp_b_id': '',
+                    'score': 0,
+                }
+                
+                new_task['src_text'] = task.pop('src_texts')
+                new_task['src_text_title'], new_task['src_text_body'] = clean_text_for_display(new_task['src_text'])
+                new_task['id'] = task.pop('test_set_line_id')
+                new_task['ref_text'] = task.pop('ref_texts') # remove from item to avoid considering for annotation       
+                random_pair = random.sample(list(task.keys()), k=min(k, len(list(task.keys()))))
+                new_task['hyp_a_id'], new_task['hyp_b_id'] = random_pair
+                new_task['hyp_a_text'] = task[new_task['hyp_a_id']]
+                new_task['hyp_b_text'] = task[new_task['hyp_b_id']]
 
-            yield new_task
+                yield new_task
 
     # stream in lines from JSONL file yielding a
     # dictionary for each example in the data.
