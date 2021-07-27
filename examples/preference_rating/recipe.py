@@ -1,10 +1,9 @@
 import prodigy
 from prodigy.components.loaders import JSONL
-from prodigy.util import split_string
-from typing import List
+from prodigy import set_hashes
+from datetime import datetime
+
 import random
-import re
-from nltk.tokenize import sent_tokenize
 
 # Author: Tannon Kew
 
@@ -50,7 +49,7 @@ def clean_text_for_display(text):
         title = ''
         body = text_parts
     # body = '\n'.join(sent_tokenize(body))
-    return title, body
+    return title.strip(), body.strip()
 
 @prodigy.recipe(
     "preference_slider",
@@ -75,8 +74,10 @@ def choice(dataset: str, source: str):
                 'hyp_b_text': '',
                 'hyp_b_id': '',
                 'score': 0,
+                'time_loaded': ''
             }
             
+            new_task['time_loaded'] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
             new_task['src_text'] = task.pop('src_texts')
             new_task['src_text_title'], new_task['src_text_body'] = clean_text_for_display(new_task['src_text'])
             new_task['id'] = task.pop('test_set_line_id')
@@ -96,16 +97,16 @@ def choice(dataset: str, source: str):
         message on page refresh
         https://support.prodi.gy/t/no-tasks-available-on-page-refresh/155
         """
-        while True:
-            stream = JSONL(file_path)
-            for task in stream:
-                yield task
+
+        stream = JSONL(source)
+        stream = add_options(stream, 2)
+        stream = (set_hashes(task, input_keys=("src_text",), task_keys=("hyp_a_text", "hyp_b_text")) for task in stream)
+        for task in stream:
+            yield task
 
     stream = get_stream()
-    # select the options (model outputs) to show for each example
-    stream = add_options(stream, 2)
-
-    question = "Which response is most related to the review below?"
+    
+    question = "Which response is most relevant to the review below?"
 
     return {
         "view_id": "blocks",
@@ -114,7 +115,7 @@ def choice(dataset: str, source: str):
         "config": {
             "blocks": [
                 {"view_id": "html", "html_template": f"<h1 class=taskQuestion>{question}</h1>"},
-                {"view_id": "html", "html_template": "<div><strong>{{src_text_title}}</strong>{{src_text_body}}</div>"},
+                {"view_id": "html", "html_template": "<div><strong>{{src_text_title}}</strong> {{src_text_body}}</div>"},
                 {"view_id": "html", "html_template": "<div>{{hyp_a_text}}</div><div>{{hyp_b_text}}</div>"},
                 {"view_id": "html", "html_template": pref_slider},
                 ],
@@ -122,55 +123,3 @@ def choice(dataset: str, source: str):
             "javascript": javascript
             },
         }
-
-
-
-# @prodigy.recipe(
-#     "k_choice",
-#     dataset=("The dataset to use", "positional",  None, str),
-#     source=("The source data as a JSONL file", "positional", None, str),
-#     k=("Number of options to choose from", "option", None, str),
-# )
-# def choice(dataset: str, source: str, k: int):
-#     """
-#     Annotate data with multiple-choice (k) options. 
-#     The annotated examples will have an additional property `"accept": []` mapping to the ID(s) of the selected option(s).
-#     """
-
-#     def add_options(stream, k=2):
-#         """Helper function to add options to every task in a stream."""
-#         for task in stream:
-#             # breakpoint()
-#             new_task = {
-#                 'text': '',
-#                 'id': '',
-#                 'options': [],
-#             }
-#             new_task['text'] = task.pop('src_texts')
-#             new_task['id'] = task.pop('test_set_line_id')        
-#             random_selection = random.sample(list(task.keys()), k=min(k, len(list(task.keys()))))
-#             for item in random_selection:
-#                 item = {'id': item, 'text': task[item]}
-#                 new_task['options'].append(item)
-#             yield new_task
-
-#     # stream in lines from JSONL file yielding a
-#     # dictionary for each example in the data.
-#     stream = JSONL(source)
-
-#     # select the options (model outputs) to show for each example
-#     k = int(k) if k else 2
-#     # print(k)
-#     stream = add_options(stream, k)
-
-#     return {
-#         "view_id": "choice",  # Annotation interface to use
-#         "dataset": dataset,  # Name of dataset to save annotations
-#         "stream": stream,  # Incoming stream of examples
-#         "config": {  # Additional config settings
-#             # Allow multiple choice if flag is set
-#             "choice_style": "multiple" if (k > 2) else "single",
-#             # Automatically accept and "lock in" selected answers if binary
-#             "choice_auto_accept": False if (k > 2) else True,
-#         },
-#     }
