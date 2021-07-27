@@ -1,0 +1,4 @@
+{"text":"This is the first long source text.","id":01,"options":{"a":{"id":"model_a","text":"This is model a output."},"b":{"id":"model_b","text":"This is model b output."}},"score":0}
+{"text":"This is the second long source text.","id":02,"options":{"a":{"id":"model_a","text":"This is model a output."},"b":{"id":"model_b","text":"This is model b output."}},"score":0}
+{"text":"This is the third long source text.","id":03,"options":{"a":{"id":"model_a","text":"This is model a output."},"b":{"id":"model_b","text":"This is model b output."}},"score":0}
+{"text":"This is the fourth long source text.","id":04,"options":{"a":{"id":"model_a","text":"This is model a output."},"b":{"id":"model_b","text":"This is model b output."}},"score":0}

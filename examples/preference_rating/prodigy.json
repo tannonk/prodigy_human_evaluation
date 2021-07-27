@@ -1,0 +1,11 @@
+{
+    "db": "sqlite",
+    "db_settings": {
+        "sqlite": {
+            "name": "prodigy.sqlite",
+            "path": "."
+        }
+    },
+    "instructions": "./instructions.html"
+
+}

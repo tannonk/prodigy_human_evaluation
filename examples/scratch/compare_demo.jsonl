@@ -1,0 +1,1 @@
+{"id": 1,"input": { "text": "NLP" },"accept": { "text": "Natural Language Processing" },"reject": { "text": "Neuro-Linguistic Programming" },"mapping": { "A": "accept", "B": "reject" }}

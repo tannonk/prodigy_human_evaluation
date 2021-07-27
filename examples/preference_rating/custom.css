@@ -1,0 +1,40 @@
+/* make the annotation window wider for side-by-side display */
+.prodigy-container {
+    max-width: 200em;
+    white-space: normal;
+}
+
+/* reduce the font size for all annotation elements */
+.prodigy-content * { font-size: 14px; }
+
+/* increase the font size for the header in prodigy-content */
+.prodigy-content h1 { font-size: 18px; }
+
+/* set the two model outputs for comparison side-by-side */
+.prodigy-content:nth-child(4) { 
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 100px;
+}
+
+/* slider settings */
+.slidecontainer {
+    margin: auto;
+    width: 80%; /* Width of the outside container */
+}
+
+.slider {
+    -webkit-appearance: none; /* Override default look */
+    width: 100%; /* Set a specific slider handle width */
+    height: 25px; /* Slider handle height */
+    background: #d3d3d3; /* slider background */
+    outline: none; /* Remove outline */
+    opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
+    -webkit-transition: .2s; /* 0.2 seconds transition on hover */
+    transition: opacity .2s;
+    cursor: pointer; /* Cursor on hover */
+}
+
+.slider:hover {
+    opacity: 1; /* Fully shown on mouse-over */
+}
