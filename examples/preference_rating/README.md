@@ -15,4 +15,4 @@ prodigy preference_slider pref_test_mbart_simpl data/ats_data/de_A1.human_eval.j
 
 ### Evaluation Schema Preview:
 
-![Example Screenshot](imgs/preference_rating_screen_1.png "Screenshot1")
+![Example Screenshot](imgs/preference_rating_screen_1.png)
