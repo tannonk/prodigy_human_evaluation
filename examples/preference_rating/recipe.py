@@ -31,7 +31,7 @@ model outputs for a single source text.
 """
 
 # set seed for reproducibility
-random.seed(42)
+# random.seed(42)
 
 with open('custom.css', 'r', encoding='utf8') as f:
     css = f.read()
@@ -64,7 +64,7 @@ def choice(dataset: str, source: str):
 
     def add_options(stream, k=2):
         """Helper function to add options to every task in a stream."""
-        for task in stream:
+        for i, task in enumerate(stream):
 
             new_task = {
                 'src_text': '',
@@ -84,12 +84,13 @@ def choice(dataset: str, source: str):
             new_task['src_text'] = task.pop('src_texts')
             new_task['src_text_title'], new_task['src_text_body'] = clean_text_for_display(new_task['src_text'])
             new_task['id'] = task.pop('test_set_line_id')
-            new_task['ref_text'] = task.pop('ref_texts') # remove from item to avoid considering for annotation       
+            new_task['ref_text'] = task.pop('ref_texts') # remove from item to avoid considering for annotation
+            random.seed(i) # set random seed as index of item in stream for reproducibility
             random_pair = random.sample(list(task.keys()), k=min(k, len(list(task.keys()))))
             new_task['hyp_a_id'], new_task['hyp_b_id'] = random_pair
             new_task['hyp_a_text'] = task[new_task['hyp_a_id']]
             new_task['hyp_b_text'] = task[new_task['hyp_b_id']]
-
+            
             yield new_task
 
     stream = JSONL(source)
