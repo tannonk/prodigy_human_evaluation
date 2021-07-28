@@ -5,10 +5,13 @@
 }
 
 /* reduce the font size for all annotation elements */
-.prodigy-content * { font-size: 14px; }
+.prodigy-content p { 
+    font-size: 16px; 
+    text-align: left;
+}
 
 /* increase the font size for the header in prodigy-content */
-.prodigy-content h1 { font-size: 18px; }
+.prodigy-content h1 { font-size: 20px; }
 
 /* set the two model outputs for comparison side-by-side */
 .prodigy-content:nth-child(4) { 

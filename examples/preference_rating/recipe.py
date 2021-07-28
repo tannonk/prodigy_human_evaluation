@@ -2,6 +2,7 @@ import prodigy
 from prodigy.components.loaders import JSONL
 from prodigy import set_hashes
 from datetime import datetime
+from prodigy.components.db import connect
 
 import random
 
@@ -74,7 +75,9 @@ def choice(dataset: str, source: str):
                 'hyp_b_text': '',
                 'hyp_b_id': '',
                 'score': 0,
-                'time_loaded': ''
+                'time_loaded': None,
+                'time_updated': None,
+                'winner': None
             }
             
             new_task['time_loaded'] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
@@ -89,24 +92,11 @@ def choice(dataset: str, source: str):
 
             yield new_task
 
-    def get_stream():
-        """
-        stream in lines from JSONL file yielding a
-        dictionary for each example in the data.
-        NOTE: Wrapping in a while loop avoids "no tasks available"
-        message on page refresh
-        https://support.prodi.gy/t/no-tasks-available-on-page-refresh/155
-        """
-
-        stream = JSONL(source)
-        stream = add_options(stream, 2)
-        stream = (set_hashes(task, input_keys=("src_text",), task_keys=("hyp_a_text", "hyp_b_text")) for task in stream)
-        for task in stream:
-            yield task
-
-    stream = get_stream()
+    stream = JSONL(source)
+    stream = add_options(stream, 2)
+    stream = (set_hashes(task, input_keys=("src_text",), task_keys=("hyp_a_text", "hyp_b_text")) for task in stream)
     
-    question = "Which response is most relevant to the review below?"
+    question = "Which response is most relevant to the review?"
 
     return {
         "view_id": "blocks",
@@ -114,9 +104,9 @@ def choice(dataset: str, source: str):
         "stream": stream,  # Incoming stream of examples
         "config": {
             "blocks": [
-                {"view_id": "html", "html_template": f"<h1 class=taskQuestion>{question}</h1>"},
-                {"view_id": "html", "html_template": "<div><strong>{{src_text_title}}</strong> {{src_text_body}}</div>"},
-                {"view_id": "html", "html_template": "<div>{{hyp_a_text}}</div><div>{{hyp_b_text}}</div>"},
+                {"view_id": "html", "html_template": "<div class=src><p><strong>Review:</strong></p><p><strong>{{src_text_title}}</strong> {{src_text_body}}</p></div>"},
+                {"view_id": "html", "html_template": "<h1 class=taskQuestion>{}</h1>".format(question)},
+                {"view_id": "html", "html_template": "<div class=hyp1><p><strong>Response A:</strong></p><p>{{hyp_a_text}}</p></div><div class=hyp2><p><strong>Response B:</strong></p><p>{{hyp_b_text}}</p></div>"},
                 {"view_id": "html", "html_template": pref_slider},
                 ],
             "global_css": css,

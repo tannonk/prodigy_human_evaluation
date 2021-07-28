@@ -6,6 +6,15 @@
             "path": "."
         }
     },
-    "instructions": "./instructions.html"
-
+    "instructions": "./instructions.html",
+    "buttons":[
+        "accept",
+        "reject"
+    ],
+    "force_stream_order": true,
+    "auto_exclude_current": true,
+    "feed_overlap": true,
+    "exclude_by": "task",
+    "instant_submit": false,
+    "batch_size": 2
 }
