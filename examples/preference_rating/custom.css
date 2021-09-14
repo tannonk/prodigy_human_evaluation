@@ -15,6 +15,7 @@
 .prodigy-content p { 
     font-size: 16px; 
     text-align: left;
+    padding: 20px; 
 }
 
 /* increase the font size for the header in prodigy-content */

@@ -2,61 +2,62 @@
 <h1 style="color: #5e9ca0;">Conditional Text Generation
 Human Evaluation: <span style="color: #ff404091;">HELP</span></h1>
 
-<h2>Aim:</h2>
+<h2>Overview:</h2>
 <p>The purpose of the annotation schema is to compare the
     outputs from different models against each other.</p>
 
-<p>Comparisons are performed in a pair-wise fashion and
-will be ranked using an appropriate scoring algotirthm a
-later stage. All examples are fully randomised.</p>
+<p>
+    Comparisons are performed in a randomised pair-wise fashion.
+    The results of the pair-wise scoring will be used to derive an overall ranking of all models being tested. For this we will use the TrueScore ranking algotirthm.
+</p>
 
 <h2>Task: Review Response Generation</h2>
 
-<p>Each annotation example consists of a review text (above)
-and two generated response texts (below, displayed
-sibe-by-side).</p>
+<p>
+    Each annotation example consists of a review text (above) and two generated response texts (below, displayed sibe-by-side).
+</p>
 
-<p>The review title, if available, is displayed in bold and prefixed to the rest of the review body.</p>
+<p>
+    The review title, if available, is displayed in bold and prefixed to the rest of the review body.
+</p>
 
-<p>For each pair of response texts, we ask a single assessment
-    question, e.g. 'which response is most related to the
-    review?'. The assessment question is displayed at the top of
-    the page.</p>
+<p>
+    For each pair of response texts, we ask a single assessment question, e.g. 'which response is most related/most relevant to the review?'. The assessment question is displayed below the review text.
+</p>
 
-<h4>And the winner is...</h4>
+<h3>And the winner is...</h4>
 
-<p>The user can drag the slider displayed below the
+<p>
+    The user can drag the slider displayed below the
 response texts to the left or right to indicate the degree
-to which one response is better given the assessment question.</p>
+to which one response is better given the assessment question.
+</p>
 
-<p>Moving the slider to the left means that the response on
-the left is preferred. Conversely, moving the slider to the
-right indicates that the response on the right is
-prefered.</p>
+<p>
+    Moving the slider to the left means that the response on the left is preferred. Conversely, moving the slider to the right indicates that the response on the right is prefered.
+</p>
 
-<p>The amount the slider is moved indicates approximately <em>how much better</em>
-the corresponding response is than the other response.</p>
+<p>
+    The amount the slider is moved indicates approximately <em>how much better</em> the corresponding response is than the other response.
+</p>
 
-<p>All the way to the left indicates that the response on the left is
-entirely (e.g. 100%) better than the response on the right.
-On the other hand, moving the slider only slightly to the
-left (e.g. 15%) would indicate the the response on the left
-is only slightly better than the response on the right.</p>
+<p>
+    All the way to the left indicates that the response on the left is entirely (e.g. 100%) better than the response on the right. 
+    On the other hand, moving the slider only slightly to the left (e.g. 15%) would indicate the the response on the left is only slightly better than the response on the right.
+</p>
 
-<h4>What to do if there's no clear winner</h4>
+<h3>What to do if there's no clear winner</h4>
 
-<p>In case of both response texts being <strong>suitable</strong>
-given the assessment question, indicate a positive draw by
-setting the slider in the middle (default value = 0) and
-click the <span style="color:#4fd364;font-weight:bold">accept</span> button.</p>
+<p>
+    If both response texts are <strong>suitable/acceptable</strong> given the assessment question, indicate a positive draw by setting the slider in the middle (default value = 0) and click the <span style="color:#4fd364;font-weight:bold">ACCEPT</span> button.
+</p>
 
-<p>In case of both response texts being <strong>unsuitable</strong>
-    given the assessment question (i.e. both responses are
-    bad) indicate a negative draw by
-    setting the slider in the middle (default value = 0) and
-    click the <span style="color:#f74c4a;font-weight:bold">reject</span> button.</p>
+<p>
+    If both response texts are <strong>unsuitable</strong> given the assessment question (i.e. both responses are highly unrelated) indicate a negative draw by setting the slider in the middle (default value = 0) and click the <span style="color:#f74c4a;font-weight:bold">REJECT</span> button.
+</p>
 
 <h2>Finalising an annotation</h2>
-<p>Upon accepting or rejecting an annotation example, the
-score provided will be saved and the next annotation task
-will be displayed.</p>
+
+<p>
+    Upon accepting or rejecting an annotation example, the score provided will be saved and the next annotation task will be displayed.
+</p>
