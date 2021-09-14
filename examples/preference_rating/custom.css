@@ -6,6 +6,12 @@
     padding: 20px; 
 }
 
+/* reduce the padding and margins for annotation elements */
+.prodigy-content div { 
+    padding: 0px;
+    margin: 0px;
+}
+
 /* reduce the font size for all annotation elements */
 .prodigy-content p { 
     font-size: 16px; 
