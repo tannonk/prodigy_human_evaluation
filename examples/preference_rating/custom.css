@@ -6,10 +6,28 @@
     padding: 20px; 
 }
 
+/* reduce the padding and margins for annotation elements */
+.prodigy-content div { 
+    padding: 0px;
+}
+
 /* reduce the font size for all annotation elements */
 .prodigy-content p { 
     font-size: 16px; 
     text-align: left;
+}
+
+/* increase the font size for the header in prodigy-content */
+.prodigy-content h1 { 
+    font-size: 20px;
+    padding: 0px;
+}
+
+/* set the two model outputs for comparison side-by-side */
+.prodigy-content:nth-child(4) { 
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 50px;
 }
 
 .hyp1 {
@@ -30,22 +48,15 @@
     padding: 20px; 
 }
 
-/* increase the font size for the header in prodigy-content */
-.prodigy-content h1 { 
-    font-size: 20px; 
-}
-
-/* set the two model outputs for comparison side-by-side */
-.prodigy-content:nth-child(4) { 
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-gap: 100px;
-}
-
 /* slider settings */
 .slidecontainer {
+    padding: 0px;
+    border: 0px;
     margin: auto;
+    /* margin: 0px 40px 0px 40px; */
+    /* padding: 0px 40px 0px 40px; */
     width: 80%; /* Width of the outside container */
+    /* height: 20px; Width of the outside container */
 }
 
 .slider {
@@ -62,4 +73,8 @@
 
 .slider:hover {
     opacity: 1; /* Fully shown on mouse-over */
+}
+
+.c0179 {
+    padding: 5px;
 }
