@@ -105,9 +105,9 @@ def choice(dataset: str, source: str):
         "stream": stream,  # Incoming stream of examples
         "config": {
             "blocks": [
-                {"view_id": "html", "html_template": "<div class=src><p><strong>Review:</strong></p><p><strong>{{src_text_title}}</strong> {{src_text_body}}</p></div>"},
+                {"view_id": "html", "html_template": "<div><p><strong>Review:</strong></p><p class=src><strong>{{src_text_title}}</strong> {{src_text_body}}</p></div>"},
                 {"view_id": "html", "html_template": "<h1 class=taskQuestion>{}</h1>".format(question)},
-                {"view_id": "html", "html_template": "<div class=hyp1><p><strong>Response A:</strong></p><p>{{hyp_a_text}}</p></div><div class=hyp2><p><strong>Response B:</strong></p><p>{{hyp_b_text}}</p></div>"},
+                {"view_id": "html", "html_template": "<div><p><strong>Response A:</strong></p><p class=hyp1>{{hyp_a_text}}</p></div><div><p><strong>Response B:</strong></p><p class=hyp2>{{hyp_b_text}}</p></div>"},
                 {"view_id": "html", "html_template": pref_slider},
                 ],
             "global_css": css,
