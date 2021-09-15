@@ -22,7 +22,7 @@ Human Evaluation: <span style="color: #ff404091;">HELP</span></h1>
 </p>
 
 <p>
-    For each pair of response texts, we ask a single assessment question, e.g. 'which response is most related/most relevant to the review?'. The assessment question is displayed below the review text.
+    For each pair of response texts, we ask a single assessment question, e.g. 'which response is...?'. The assessment question is displayed below the review text.
 </p>
 
 <h3>And the winner is...</h4>
@@ -34,7 +34,7 @@ to which one response is better given the assessment question.
 </p>
 
 <p>
-    Moving the slider to the left means that the response on the left is preferred. Conversely, moving the slider to the right indicates that the response on the right is prefered.
+    Moving the slider to the left means that the response on the left is preferred. Conversely, moving the slider to the right indicates that the response on the right is preferred.
 </p>
 
 <p>
@@ -56,8 +56,123 @@ to which one response is better given the assessment question.
     If both response texts are <strong>unsuitable</strong> given the assessment question (i.e. both responses are highly unrelated) indicate a negative draw by setting the slider in the middle (default value = 0) and click the <span style="color:#f74c4a;font-weight:bold">REJECT</span> button.
 </p>
 
+<h2>Example 1</h2>
+
+<p>
+    <span style="color:#d1caff;font-weight:bold">REVIEW</span>:
+    very good --- Very good hotel, with good service; the
+    hotel rooms are very good. But the finish isn't perfect and
+    could do with more attention. The staff were very friendly,
+    welcoming and professional. The bar was everything you'd
+    expect from Wetherspoons
+</p>
+
+<p>
+    <span style="color:#b4e8fc;font-weight:bold">RESPONSE A</span>:
+    Thank you for taking the time to leave us a review. We are
+    pleased to hear you enjoyed your stay with us. We hope to
+    welcome you back again soon.
+</p>
+
+<p>
+    <span style="color:#9effd6;font-weight:bold">RESPONSE B</span>:
+    Thank you for taking the time to write a review about your
+    recent stay at Wetherspoons. I was pleased to read that you
+    found the staff to be friendly, welcoming and professional
+    and that the bar was everything you would expect from a
+    hotel. I am sorry that the finish of the hotel was not to
+    your liking and I will pass on your comments to the relevant
+    departments. I hope that we will have the opportunity to
+    welcome you back to the hotel in the near future. Kind
+    regards, Michael Grange General Manager
+</p>
+
+<p>
+    In this example, <span style="color:#b4e8fc;font-weight:bold">RESPONSE A</span> is freindly and appropriate
+    given the tone of the review, however, it is also
+    generic and fails to address any of the points
+    raised in the review.
+</p>
+
+<p>
+    In contrast, <span style="color:#9effd6;font-weight:bold">RESPONSE B</span> responds to specific points
+    mentioned in the review, namely, the positive remark
+    about the staff and the critique regarding the decor of
+    the hotel. Therefore, <span style="color:#9effd6;font-weight:bold">RESPONSE B</span> is much more specific to the input
+    review and should be indicated by setting the slider's
+    cursor to the right (~100%) and hitting <span style="color:#4fd364;font-weight:bold">ACCEPT</span>.
+</p>
+
+<h2>Example 2</h2>
+
+<p>
+    <span style="color:#d1caff;font-weight:bold">REVIEW</span>:
+    Amazing Hotel!! --- What a great hotel! My family & I
+    just spend 4 days during Spring Break and had an amazing
+    time. The rooms are beautifully renovated with a modern but
+    cozy look. The rooms were very spacious and very clean.
+    Having a kitchen in our room is very convinient when you
+    have small children. The entire staff was so friendly and so
+    welcoming. Great breakfast was included with lots of options
+    for everyone. The location is perfectly located within the
+    village. There is so much to do within the village and
+    everything is a short walk away. This is definitely an
+    annual family Spring Break getaway.
+</p>
+
+<p>
+    <span style="color:#b4e8fc;font-weight:bold">RESPONSE A</span>:
+    Thank you for taking the time to post a review of the
+    Crystal Lodge following your recent visit to Whistler. I
+    am pleased to read that you and your family enjoyed your
+    stay with us. We look forward to welcoming you back
+    again in the future. Warm regards, Ian Lowe
+</p>
+
+<p>
+    <span style="color:#9effd6;font-weight:bold">RESPONSE B</span>:
+    Thank you for taking the time to share your recent
+    experience at the Crystal Lodge following your family's
+    holiday. We are very pleased to read that you
+    enjoyed your stay with us and we look forward to your
+    next visit. Sincerely, Ian Lowe
+</p>
+
+<p>
+    In this example, <span style="color:#b4e8fc;font-weight:bold">RESPONSE A</span> and <span style="color:#9effd6;font-weight:bold">RESPONSE B</span> are very similar and
+    both are rather generic. They both pick up on the fact
+    that the review is related to a family holiday but they
+    fail to mention any of the main points raised in the
+    review, e.g. 'Spring Break', quality of the rooms,
+    breakfast and location, etc. Therefore, you could argue
+    that the generated responses are not specific to the
+    review and <span style="color:#f74c4a;font-weight:bold">REJECT</span> both, setting the slider's cursor in
+    the middle.
+</p>
+
+<h2>Caveats</h2>
+
+<p>
+    A major challenge of Conditional Text Generation is
+    hallucination, where the model generates content that is
+    unsupported by the source. We are aware that our model
+    outputs sometimes contain instances of hallucination and
+    this will be investigated as part of future work. For
+    the time being, feel free to ignore any obvious
+    hallucination issues.
+</p>
+
 <h2>Finalising an annotation</h2>
 
 <p>
     Upon accepting or rejecting an annotation example, the score provided will be saved and the next annotation task will be displayed.
 </p>
+
+<div>
+    <img src="imgs/annotated_screen_2.jpg" alt="annotated
+screenshot example">
+</div>
+<div>
+    <img src="imgs/annotated_screen_1.jpg" alt="annotated
+screenshot example">
+</div>

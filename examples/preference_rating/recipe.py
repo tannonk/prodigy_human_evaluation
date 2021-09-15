@@ -97,7 +97,7 @@ def choice(dataset: str, source: str):
     stream = add_options(stream, 2)
     stream = (set_hashes(task, input_keys=("src_text",), task_keys=("hyp_a_text", "hyp_b_text")) for task in stream)
     
-    question = "Which response is most relevant to the review?"
+    question = "Which response is more specific to the review?"
 
     return {
         "view_id": "blocks",
